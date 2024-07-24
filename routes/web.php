@@ -1,12 +1,11 @@
 <?php
 
+use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\IntakeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect()->route('intakeForm');
-});
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('intake', [IntakeController::class, 'intakeForm'])->name('intakeForm');
 
