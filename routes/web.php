@@ -1,22 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Front\IntakeController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
-
 Route::get('intake', [IntakeController::class, 'intakeForm'])->name('intakeForm');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::middleware('role:admin')->prefix('admin')->group(function () {
+        Route::get('dashboard', [Admin\IndexController::class, 'index'])->name('admin.dashboard');
+    });
 });
 
 require __DIR__.'/auth.php';
