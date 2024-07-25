@@ -1,5 +1,5 @@
 <form>
-    <h1 class="text-base font-semibold leading-7 text-gray-900 text-4xl text-center m-4">Intake Form</h1>
+    <h1 class="font-semibold text-gray-900 text-4xl text-center font-bold m-4">Intake Form</h1>
     <div class="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-3">
             <x-input-label for="first_name" :value="__('First Name')"/>
