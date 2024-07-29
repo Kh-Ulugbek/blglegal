@@ -2,11 +2,15 @@
 
 namespace App\Livewire\Front\Pages;
 
+use App\Mail\IntakeFormMail;
 use App\Models\Assistance;
 use App\Models\Injure;
 use App\Models\Intake;
 use App\Models\IntakeAssistance;
 use App\Models\IntakeInjure;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class IntakeForm extends Component
@@ -126,6 +130,8 @@ class IntakeForm extends Component
             );
         }
 
+        $admin = User::query()->whereHasRole(Role::ADMIN)->get();
+        Mail::to($admin)->send(new IntakeFormMail());
         $this->redirect('/');
     }
 }
