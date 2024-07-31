@@ -14,8 +14,6 @@ Route::middleware('auth')->group(function () {
 
         //Intakes
         Route::get('intake', [Admin\IntakeController::class, 'index'])->name('admin.intake');
-        Route::post('intake/edit/{id}', [Admin\IntakeController::class, 'edit'])->name('admin.intake.edit');
-        Route::delete('intake/delete/{id}', [Admin\IntakeController::class, 'delete'])->name('admin.intake.delete');
     });
 });
 

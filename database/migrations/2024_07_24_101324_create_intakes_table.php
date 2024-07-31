@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('therapy');
             $table->string('hospital');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

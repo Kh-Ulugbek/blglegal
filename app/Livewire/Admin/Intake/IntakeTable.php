@@ -28,4 +28,10 @@ class IntakeTable extends Component
             ->paginate();
         return view('livewire..admin.intake.intake-table', compact('list'));
     }
+
+    public function delete($id)
+    {
+        Intake::query()->findOrFail($id)->delete();
+        $this->render();
+    }
 }
