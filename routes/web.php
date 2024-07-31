@@ -11,6 +11,9 @@ Route::get('intake', [IntakeController::class, 'intakeForm'])->name('intakeForm'
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->prefix('admin')->group(function () {
         Route::get('dashboard', [Admin\IndexController::class, 'index'])->name('admin.dashboard');
+
+        //Intakes
+        Route::get('intake', [Admin\IntakeController::class, 'index'])->name('admin.intake');
         Route::get('document/editor', [Admin\IndexController::class, 'documentEditor'])->name('admin.document.editor');
     });
 });
