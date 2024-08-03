@@ -11,9 +11,4 @@ class IndexController extends Controller
     {
         return view('admin.pages.index');
     }
-
-    public function documentEditor()
-    {
-        return view('admin.pages.document-editor');
-    }
 }

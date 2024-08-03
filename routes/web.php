@@ -14,7 +14,8 @@ Route::middleware('auth')->group(function () {
 
         //Intakes
         Route::get('intake', [Admin\IntakeController::class, 'index'])->name('admin.intake');
-        Route::get('document/editor', [Admin\IndexController::class, 'documentEditor'])->name('admin.document.editor');
+        Route::get('document/editor', [Admin\ContractController::class, 'index'])->name('admin.document.editor');
+        Route::get('document/editor/edit/{id}', [Admin\ContractController::class, 'edit'])->name('admin.document.editor.edit');
     });
 });
 
