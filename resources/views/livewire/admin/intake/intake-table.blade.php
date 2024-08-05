@@ -172,6 +172,49 @@
                         <th scope="col"
                             class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                             <a wire:click="sort('intakes.email')" href="#" class="group inline-flex">
+                                Status
+                                <!-- Active: "bg-gray-200 text-gray-900 group-hover:bg-gray-300", Not Active: "invisible text-gray-400 group-hover:visible group-focus:visible" -->
+                                <span
+                                    @if($sort_type == 'intakes.status' and $direction == 'desc')
+                                        class="ml-2 flex-none rounded
+                                                bg-red-50
+                                                text-red-900
+                                                group-hover:bg-red-100
+                                                pt-1"
+                                    {{--                            style="background: #f3dbdb; color: #c70707"--}}
+                                    @elseif($sort_type == 'intakes.status' and $direction == 'asc')
+                                        class="ml-2 flex-none rounded
+                                                bg-green-50
+                                                text-green-900
+                                                group-hover:bg-green-100
+                                                pt-1"
+                                    {{--                            style="background: #dbf3e5; color: #07c78c"--}}
+                                    @else
+                                        class="ml-2 flex-none rounded
+                                                text-gray-900
+                                                group-hover:bg-gray-100
+                                                pt-1"
+                                        @endif
+                                    >
+                                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                             viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4
+                                            @if($sort_type == 'intakes.status' and $direction == 'desc')
+                                                text-red-900
+                                            @elseif($sort_type == 'intakes.status' and $direction == 'asc')
+                                                text-green-900
+                                            @else
+                                                text-gray-900
+                                            @endif
+                                            ">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"/>
+                                        </svg>
+                                    </span>
+                            </a>
+                        </th>
+                        <th scope="col"
+                            class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                            <a wire:click="sort('intakes.email')" href="#" class="group inline-flex">
                                 Created at
                                 <!-- Active: "bg-gray-200 text-gray-900 group-hover:bg-gray-300", Not Active: "invisible text-gray-400 group-hover:visible group-focus:visible" -->
                                 <span
@@ -232,9 +275,18 @@
                                 {{ $item->email }}
                             </td>
                             <td class="whitespace-nowrap py-4 text-sm text-gray-500">
+                                @if($item->status == 1)
+                                    <span class="inline-flex items-center rounded-full bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-700">Waiting</span>
+                                @elseif($item->status == 2)
+                                    <span class="inline-flex items-center rounded-full bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-700">Accepted</span>
+                                @else
+                                    <span class="inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700">Rejected</span>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap py-4 text-sm text-gray-500">
                                 {{ $item->created_at }}
                             </td>
-                            <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-2">
+                            <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-2 flex justify-end">
 {{--                                <a href="{{ route('admin.salesAgents.edit', $item->id) }}"--}}
 {{--                                   type="button"--}}
 {{--                                   class="inline-flex items-center rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-yellow-400">--}}
@@ -242,7 +294,7 @@
 {{--                                </a>--}}
                                 <a x-on:click="acceptModal{{ $item->id }} = true"
                                    type="button"
-                                   class="inline-flex items-center rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-emerald-300 hover:bg-emerald-400">
+                                   class="inline-flex items-center rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-emerald-300 hover:bg-emerald-400 mr-2">
                                     Accept
                                 </a>
                                 <div
@@ -291,10 +343,10 @@
                                                         <div class="inline-flex sm:w-2/3 justify-end">
                                                             <button
                                                                 x-on:click="acceptModal{{ $item->id }} = false"
-{{--                                                                wire:click="accept({{ $item->id }})"--}}
+                                                                wire:click="accept({{ $item->id }})"
                                                                 type="button"
                                                                 class="inline-flex w-full justify-center rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-400 sm:ml-3 sm:w-auto">
-                                                                Delete
+                                                                Accept
                                                             </button>
                                                         </div>
                                                     </div>
@@ -308,7 +360,7 @@
                                 <a x-on:click="deleteModal{{ $item->id }} = true"
                                    type="button"
                                    class="inline-flex items-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-red-300 hover:bg-red-400">
-                                    Delete
+                                    Reject
                                 </a>
                                 <div
                                     :class="{ 'hidden': ! deleteModal{{ $item->id }} }"
@@ -356,10 +408,10 @@
                                                         <div class="inline-flex sm:w-2/3 justify-end">
                                                             <button
                                                                 x-on:click="deleteModal{{ $item->id }} = false"
-                                                                wire:click="delete({{ $item->id }})"
+                                                                wire:click="reject({{ $item->id }})"
                                                                 type="button"
                                                                     class="inline-flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 sm:ml-3 sm:w-auto">
-                                                                Delete
+                                                                Reject
                                                             </button>
                                                         </div>
                                                     </div>

@@ -13,12 +13,13 @@ class IntakeFormMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $intake;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($intake)
     {
-        //
+        $this->intake = $intake;
     }
 
     /**
@@ -37,7 +38,7 @@ class IntakeFormMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.intake-form-mail',
+            view: 'email.email-template',
         );
     }
 

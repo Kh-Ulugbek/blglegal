@@ -11,4 +11,9 @@ class IntakeController extends Controller
     {
         return view('front.intake-form');
     }
+
+    public function template()
+    {
+        return view('email.email-template');
+    }
 }

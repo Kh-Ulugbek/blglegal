@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'home'])->name('home');
 Route::get('intake', [IntakeController::class, 'intakeForm'])->name('intakeForm');
+Route::get('template', [IntakeController::class, 'template'])->name('template');
 
 Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->prefix('admin')->group(function () {

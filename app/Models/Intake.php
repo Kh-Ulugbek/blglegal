@@ -10,6 +10,10 @@ class Intake extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const WAITING_STATUS = 1;
+    const ACCEPTED_STATUS = 2;
+    const REJECTED_STATUS = 3;
+
     protected $fillable= [
         'first_name',
         'last_name',
@@ -36,5 +40,6 @@ class Intake extends Model
         'treatment',
         'therapy',
         'hospital',
+        'status',
     ];
 }

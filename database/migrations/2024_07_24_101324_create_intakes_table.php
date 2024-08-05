@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('treatment');
             $table->string('therapy');
             $table->string('hospital');
+            $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });
