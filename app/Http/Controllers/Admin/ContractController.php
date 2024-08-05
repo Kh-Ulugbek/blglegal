@@ -18,4 +18,12 @@ class ContractController extends Controller
         $item = Contract::query()->findOrFail($id);
         return view('admin.pages.document-editor', compact('item'));
     }
+
+    public function update($id, Request $request)
+    {
+        $item = Contract::query()->findOrFail($id);
+        $item->content = $request->get('content');
+        $item->save();
+        return redirect()->back();
+    }
 }

@@ -1,5 +1,4 @@
 import {
-    DecoupledEditor,
     AccessibilityHelp,
     Alignment,
     Autoformat,
@@ -11,6 +10,7 @@ import {
     Bold,
     CloudServices,
     Code,
+    DecoupledEditor,
     Essentials,
     FindAndReplace,
     FontBackgroundColor,
@@ -251,10 +251,18 @@ const editorConfig = {
         contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells', 'tableProperties', 'tableCellProperties']
     }
 };
+let editor_data;
 
 DecoupledEditor.create(document.querySelector('#editor'), editorConfig).then(editor => {
     document.querySelector('#editor-toolbar').appendChild(editor.ui.view.toolbar.element);
     document.querySelector('#editor-menu-bar').appendChild(editor.ui.view.menuBarView.element);
+    editor_data = editor;
 
     return editor;
 });
+
+document.querySelector( '#btnSubmit' ).addEventListener( 'click', () => {
+    console.log(editor_data.getData())
+    document.querySelector( '#content' ).value = editor_data.getData();
+    document.getElementById("myForm").submit();
+} );

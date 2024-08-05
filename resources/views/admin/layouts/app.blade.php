@@ -22,7 +22,8 @@
             }
         }
     </script>
-    <script type="module" src="{{ URL::asset('js/main.js') }}"></script>
+
+    @stack('scripts')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -144,5 +145,6 @@
 </div>
 @livewireScripts
 @yield('js')
+
 </body>
 </html>

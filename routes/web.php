@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
         Route::get('intake', [Admin\IntakeController::class, 'index'])->name('admin.intake');
         Route::get('document/editor', [Admin\ContractController::class, 'index'])->name('admin.document.editor');
         Route::get('document/editor/edit/{id}', [Admin\ContractController::class, 'edit'])->name('admin.document.editor.edit');
+        Route::post('document/editor/update/{id}', [Admin\ContractController::class, 'update'])->name('admin.document.editor.update');
     });
 });
 
