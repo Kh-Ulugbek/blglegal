@@ -295,7 +295,8 @@
 
         .kc-container {
             max-width: 1170px;
-        }</style>
+        }
+    </style>
     <style type="text/css" id="kc-css-render">@media only screen and (min-width: 1000px) and (max-width: 5000px) {
             body.kc-css-system .kc-css-709647 {
                 width: 100%;
@@ -304,7 +305,10 @@
 
         body.kc-css-system .kc-css-190223 {
             color: #ff0000;
-        }</style>
+        }
+    </style>
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+    @livewireStyles
 </head>
 
 <body
@@ -349,6 +353,6 @@
 <script type='text/javascript'
         src='{{ asset('assets/js/main-page/kingcomposer.min.js') }}'></script>
 <script type='{{ asset('assets/js/main-page/wp-embed.min.js') }}'></script>
-
+@livewireScripts
 </body>
 </html>

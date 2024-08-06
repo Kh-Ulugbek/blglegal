@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('therapy');
             $table->string('hospital');
             $table->integer('status')->default(1);
+            $table->string('token', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

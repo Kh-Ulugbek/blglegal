@@ -41,5 +41,6 @@ class Intake extends Model
         'therapy',
         'hospital',
         'status',
+        'token',
     ];
 }

@@ -14,12 +14,14 @@ class IntakeFormMail extends Mailable
     use Queueable, SerializesModels;
 
     public $intake;
+    public $token;
     /**
      * Create a new message instance.
      */
-    public function __construct($intake)
+    public function __construct($intake, $token)
     {
         $this->intake = $intake;
+        $this->token = $token;
     }
 
     /**

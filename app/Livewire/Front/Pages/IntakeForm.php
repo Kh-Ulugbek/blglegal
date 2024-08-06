@@ -11,6 +11,7 @@ use App\Models\IntakeInjure;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class IntakeForm extends Component
@@ -82,6 +83,8 @@ class IntakeForm extends Component
             ]
         );
 
+        $token = Str::random(50);
+
         $intake = Intake::query()->create(
             [
                 'first_name' => $this->first_name,
@@ -108,7 +111,8 @@ class IntakeForm extends Component
                 'working_status' => $this->working_status,
                 'treatment' => $this->treatment,
                 'therapy' => $this->therapy,
-                'hospital' => $this->hospital
+                'hospital' => $this->hospital,
+                'token' => $token,
             ]
         );
 
@@ -131,7 +135,8 @@ class IntakeForm extends Component
         }
 
         $admin = User::query()->whereHasRole(Role::ADMIN)->get();
-        Mail::to($admin)->send(new IntakeFormMail());
+
+        Mail::to($admin)->send(new IntakeFormMail($intake, $token));
         $this->redirect('/');
     }
 }

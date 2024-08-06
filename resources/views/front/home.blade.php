@@ -455,7 +455,6 @@
                                         can assist you and your business needs, please call (646) 809-1616 today for a
                                         consultation.</p>
                                 </div>
-                                <!-- /.modal-body -->
                             </div>
 
 
@@ -467,10 +466,9 @@
                                     <section class="newsletter_section">
                                         <div class="row">
                                             <div class="" data-aos="fade-up">
-                                                <h1 style="text-align: center;" class="newsletter-title">Bankruptcy
-                                                    Law</h1>
-                                            </div><!-- END COL -->
-                                        </div><!-- END ROW -->
+                                                <h1 style="text-align: center;" class="newsletter-title">Bankruptcy Law</h1>
+                                            </div>
+                                        </div>
                                     </section>
                                     <!-- END NEWSLETTER -->
                                     <br><br>

@@ -333,7 +333,7 @@
                                                                  fillcolor="#000000">
                                                         <w:anchorlock/>
                                                         <center style="color:#ffffff;"><![endif]-->
-                                                    <a href="https://unlayer.com" target="_blank"
+                                                    <a href="{{config('app.url').'/sign-contract?token='.$token }}" target="_blank"
                                                        class="v-button v-size-width"
                                                        style="box-sizing: border-box;display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #ffffff; background-color: #000000; border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px; width:48%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #000000; border-top-style: solid; border-top-width: 2px; border-left-color: #000000; border-left-style: solid; border-left-width: 2px; border-right-color: #000000; border-right-style: solid; border-right-width: 2px; border-bottom-color: #000000; border-bottom-style: solid; border-bottom-width: 2px;font-size: 18px;">
                                                         <span

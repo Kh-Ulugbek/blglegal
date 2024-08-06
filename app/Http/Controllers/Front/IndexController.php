@@ -9,11 +9,11 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return view('front.index');
+        return view('front.home');
     }
 
-    public function home()
+    public function signContract()
     {
-        return view('front.home');
+        return view('front.pages.sign-contract');
     }
 }
